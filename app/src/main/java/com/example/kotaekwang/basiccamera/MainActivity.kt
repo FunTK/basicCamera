@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         cameraPreview = CameraPreview(this,mCamera!!)
+        camera_frameLayout.addView(cameraPreview)
 
     }
 
