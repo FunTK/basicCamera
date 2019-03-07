@@ -21,7 +21,6 @@ class CameraPreview(context:Context, private val mCamera:Camera) : SurfaceView(c
 
     override fun surfaceCreated(holder: SurfaceHolder) {
         // The Surface has been created, now tell the camera where to draw the preview.
-        Log.d("SurfaceView","Created  ${mHolder.surface}")
         mCamera.apply {
             try {
                 setDisplayOrientation(90)
@@ -37,7 +36,6 @@ class CameraPreview(context:Context, private val mCamera:Camera) : SurfaceView(c
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, w: Int, h: Int) {
         // If your preview can change or rotate, take care of those events here.
         // Make sure to stop the preview before resizing or reformatting it.
-        Log.d("Camera","Changed  ${mHolder.surface}")
         if (mHolder.surface == null) {
             // preview surface does not exist
             return
@@ -63,8 +61,5 @@ class CameraPreview(context:Context, private val mCamera:Camera) : SurfaceView(c
             }
         }}
 
-    override fun surfaceDestroyed(p0: SurfaceHolder) {
-
-    }
-
+    override fun surfaceDestroyed(p0: SurfaceHolder) {}
 }
