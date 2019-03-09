@@ -1,6 +1,7 @@
 package com.example.kotaekwang.basiccamera
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -12,6 +13,7 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
@@ -21,6 +23,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val arrayPemission : Array<String> = arrayOf(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     private val MEDIA_IMAGE_TYPE : Int = 1
+    private val OPEN_GALLERY : Int = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         permissionCheck()
 
         camera_button.setOnClickListener{takePicture()}
+        getImage_button.setOnClickListener {moveImageActivity()}
+    }
+
+    private fun moveImageActivity(){
+        val intent = Intent(this,ImageActivity::class.java)
+        startActivity(intent)
     }
 
     private fun takePicture(){
@@ -163,7 +173,7 @@ class MainActivity : AppCompatActivity() {
     @Override
     override fun onPause() {
         super.onPause()
-        releaseCamera()
+         //releaseCamera()
     }
 
     private fun releaseCamera(){
