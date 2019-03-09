@@ -8,7 +8,7 @@ import android.view.SurfaceView
 import android.widget.Toast
 import java.io.IOException
 
-class CameraPreview(context:Context, private val mCamera:Camera) : SurfaceView(context), SurfaceHolder.Callback {
+class CameraPreview(context:Context, private var mCamera:Camera) : SurfaceView(context), SurfaceHolder.Callback {
 
 
     private val mHolder: SurfaceHolder = this.holder.apply {
@@ -28,7 +28,6 @@ class CameraPreview(context:Context, private val mCamera:Camera) : SurfaceView(c
                 setPreviewDisplay(holder)
                 startPreview()
             } catch (e: IOException) {
-                Toast.makeText(context,"$e",Toast.LENGTH_LONG).show()
                 Log.d("Error", "Error setting camera preview: ${e.message}")
             }
         }
@@ -63,4 +62,5 @@ class CameraPreview(context:Context, private val mCamera:Camera) : SurfaceView(c
         }}
 
     override fun surfaceDestroyed(p0: SurfaceHolder) {}
+
 }
